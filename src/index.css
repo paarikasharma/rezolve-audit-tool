@@ -156,7 +156,7 @@ body::after {
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 13px; font-weight: 500;
-  color: var(--text-2);
+  color: #9ba3c8;
   cursor: pointer;
   transition: all 0.18s;
   white-space: nowrap;
