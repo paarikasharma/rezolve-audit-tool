@@ -61,7 +61,7 @@ export default function App() {
           <div className="hero">
             <FloatingBadges />
             <h1 className="hero-h1">Why can't customers find<br />your <span><Typewriter /></span>?</h1>
-            <p className="hero-p">Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
+            <p className="hero-p">Paste any listing. Get a discovery score, missing attributes,<br />better search terms, and the exact capabilities that fix each gap.</p>
 
             <div className="stat-strip hero-p">
               <span className="stat-item"><strong>3</strong> input modes</span>
