@@ -596,11 +596,11 @@ input[type="file"] { display: none; }
   padding: 1.5px;
   background: conic-gradient(
     from var(--border-angle),
-    #5b72f7 0%,
-    #a855f7 25%,
-    #f472b6 50%,
-    #a855f7 75%,
-    #5b72f7 100%
+    rgba(91,114,247,0.4) 0%,
+    rgba(168,85,247,0.3) 25%,
+    rgba(244,114,182,0.3) 50%,
+    rgba(168,85,247,0.3) 75%,
+    rgba(91,114,247,0.4) 100%
   );
   animation: rotateBorder 5s linear infinite;
 }
