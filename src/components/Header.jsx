@@ -6,7 +6,6 @@ export default function Header() {
           <div className="logo-mark">R</div>
           <div>
             <div className="logo-text">Discovery Audit Studio</div>
-            <div className="logo-sub">by Rezolve</div>
           </div>
         </div>
         <div className="header-badge">Prototype</div>

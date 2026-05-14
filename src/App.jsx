@@ -38,9 +38,8 @@ export default function App() {
       <main className="container">
         {mode !== 'results' && (
           <div className="hero">
-            <div className="hero-pill">AI-powered · Rezolve</div>
-            <h1>Why can't customers find<br /><span>your product?</span></h1>
-            <p>Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact Rezolve capabilities that fix each gap.</p>
+<h1>Why can't customers find<br /><span>your product?</span></h1>
+            <p>Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
           </div>
         )}
 
@@ -52,7 +51,7 @@ export default function App() {
               <div className="loading-state">
                 <div className="loader-ring" />
                 <div className="loading-text">Auditing your listing…</div>
-                <div className="loading-sub">Scoring searchability, attributes, confidence signals & Rezolve fit</div>
+                <div className="loading-sub">Scoring searchability, attributes, confidence signals & discovery fit</div>
               </div>
             )}
 
