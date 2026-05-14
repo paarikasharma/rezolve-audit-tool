@@ -278,7 +278,7 @@ input[type="file"] { display: none; }
   cursor: pointer; transition: all 0.2s;
   display: flex; align-items: center; gap: 10px;
   letter-spacing: 0.3px;
-  width: 100%;
+  width: auto;
   justify-content: center;
   box-shadow: 0 0 0 1px rgba(91,114,247,0.4), 0 4px 20px rgba(91,114,247,0.25);
 }
