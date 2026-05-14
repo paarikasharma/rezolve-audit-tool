@@ -215,7 +215,7 @@ textarea:focus, input[type="url"]:focus {
   border-color: rgba(91,114,247,0.4);
   background: #0f0f22;
 }
-textarea::placeholder, input::placeholder { color: #3d4266; }
+textarea::placeholder, input::placeholder { color: #5a6080; }
 
 .url-note {
   margin-top: 10px; font-size: 12px; color: var(--text-2);
