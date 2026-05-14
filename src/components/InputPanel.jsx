@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { SAMPLE_LISTINGS } from '../lib/audit'
 
 export default function InputPanel({ onAnalyze, loading }) {
-  const [tab, setTab] = useState('paste')
+  const [tab, setTab] = useState('samples')
   const [text, setText] = useState('')
   const [url, setUrl] = useState('')
   const [drag, setDrag] = useState(false)
