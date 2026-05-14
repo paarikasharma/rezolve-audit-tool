@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import Header from './components/Header'
+import Typewriter from './components/Typewriter'
 import InputPanel from './components/InputPanel'
 import { ScoreHero, DimensionList } from './components/ScoreGauge'
 import ListingImprover from './components/ListingImprover'
@@ -53,7 +54,7 @@ export default function App() {
       <main className="container">
         {mode !== 'results' && (
           <div className="hero">
-            <h1>Why can't customers find<br /><span>your product?</span></h1>
+            <h1>Why can't customers find<br />your <span><Typewriter /></span>?</h1>
             <p>Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
           </div>
         )}

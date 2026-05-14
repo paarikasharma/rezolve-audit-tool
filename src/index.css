@@ -494,5 +494,22 @@ input[type="file"] { display: none; }
   display: flex; gap: 8px; align-items: flex-start;
 }
 
+/* ── Typewriter ── */
+.typewriter-word {
+  display: inline-block;
+  min-width: 2px;
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background: linear-gradient(135deg, #7b93fa, #c084fc);
+  border-radius: 2px;
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
 .fade-in { animation: fadeIn 0.4s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
