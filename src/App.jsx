@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './index.css'
 import Header from './components/Header'
 import Typewriter from './components/Typewriter'
@@ -24,11 +24,13 @@ export default function App() {
   const [error, setError] = useState('')
   const [originalText, setOriginalText] = useState('')
   const [loadStep, setLoadStep] = useState(0)
+  const loadingRef = useRef(null)
 
   useEffect(() => {
     if (mode !== 'loading') return
     setLoadStep(0)
     const id = setInterval(() => setLoadStep(s => Math.min(s + 1, LOADING_STEPS.length - 1)), 2200)
+    setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 50)
     return () => clearInterval(id)
   }, [mode])
 
@@ -78,7 +80,7 @@ export default function App() {
             </div>
 
             {mode === 'loading' && (
-              <div className="loading-state">
+              <div className="loading-state" ref={loadingRef}>
                 <div className="loading-orb">
                   <div className="loading-ring" />
                   <div className="loading-ring r2" />
