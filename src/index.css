@@ -140,26 +140,45 @@ body::after {
 
 .tabs {
   display: flex;
+  padding: 6px;
+  gap: 2px;
   border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.2);
   overflow-x: auto;
   scrollbar-width: none;
 }
 .tabs::-webkit-scrollbar { display: none; }
 
 .tab-btn {
-  background: none; border: none;
-  padding: 14px 18px;
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
   font-size: 13px; font-weight: 500;
   color: var(--text-2);
   cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.15s;
+  transition: all 0.18s;
   white-space: nowrap;
-  display: flex; align-items: center; gap: 6px;
-  margin-bottom: -1px; flex-shrink: 0;
+  display: flex; align-items: center; gap: 7px;
+  flex-shrink: 0;
+  position: relative;
 }
-.tab-btn:hover { color: var(--text); }
-.tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+.tab-btn:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+.tab-btn.active {
+  color: var(--text);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.tab-btn .tab-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+.tab-btn .tab-label {
+  font-size: 13px;
+}
 
 .tab-content { padding: 20px; }
 

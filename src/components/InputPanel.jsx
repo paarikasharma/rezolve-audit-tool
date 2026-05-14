@@ -34,10 +34,10 @@ export default function InputPanel({ onAnalyze, loading }) {
   }
 
   const tabs = [
-    { id: 'paste', icon: '📋', label: 'Paste listing' },
-    { id: 'url', icon: '🔗', label: 'URL' },
-    { id: 'csv', icon: '📊', label: 'CSV upload' },
-    { id: 'samples', icon: '✨', label: 'Samples' },
+    { id: 'paste',   icon: '📋', label: 'Paste listing' },
+    { id: 'url',     icon: '🔗', label: 'URL' },
+    { id: 'csv',     icon: '📊', label: 'CSV upload' },
+    { id: 'samples', icon: '✨', label: 'Try a sample' },
   ]
 
   return (
@@ -45,7 +45,8 @@ export default function InputPanel({ onAnalyze, loading }) {
       <div className="tabs">
         {tabs.map(t => (
           <button key={t.id} className={`tab-btn ${tab === t.id ? 'active' : ''}`} onClick={() => setTab(t.id)}>
-            {t.icon} {t.label}
+            <span className="tab-icon">{t.icon}</span>
+            <span className="tab-label">{t.label}</span>
           </button>
         ))}
       </div>
