@@ -1,73 +1,53 @@
-function scoreColor(s) {
-  if (s <= 40) return { text: 'score-red', bar: 'bar-red', hex: '#ef4444', label: 'High Friction' }
-  if (s <= 60) return { text: 'score-amber', bar: 'bar-amber', hex: '#f59e0b', label: 'Moderate Friction' }
-  if (s <= 80) return { text: 'score-blue', bar: 'bar-blue', hex: '#4f6ef7', label: 'Low Friction' }
-  return { text: 'score-green', bar: 'bar-green', hex: '#10b981', label: 'Discovery Ready' }
+function scoreClass(s) {
+  if (s <= 40) return { cls: 'red',   label: 'High Friction' }
+  if (s <= 60) return { cls: 'amber', label: 'Moderate Friction' }
+  if (s <= 80) return { cls: 'blue',  label: 'Low Friction' }
+  return           { cls: 'green',  label: 'Discovery Ready' }
 }
 
-export function ScoreGauge({ score, summary }) {
-  const c = scoreColor(score)
-  const r = 54
-  const circ = 2 * Math.PI * r
-  const dash = circ * (score / 100)
+const DIM_NAMES = {
+  searchability:        'Searchability',
+  attributeCompleteness:'Attribute Completeness',
+  visualDiscovery:      'Visual Discovery',
+  customerConfidence:   'Customer Confidence',
+  conversionClarity:    'Conversion Clarity',
+  alternativePath:      'Alternative Path',
+  aiCommerceReadiness:  'AI Commerce Readiness',
+}
 
+export function ScoreHero({ score, summary }) {
+  const { cls, label } = scoreClass(score)
   return (
-    <div className="score-hero">
-      <div className="score-circle">
-        <svg width="130" height="130" viewBox="0 0 130 130">
-          <circle cx="65" cy="65" r={r} fill="none" stroke="var(--border)" strokeWidth="10" />
-          <circle
-            cx="65" cy="65" r={r} fill="none"
-            stroke={c.hex} strokeWidth="10"
-            strokeDasharray={`${dash} ${circ}`}
-            strokeLinecap="round"
-          />
-        </svg>
-        <div className="score-value">
-          <span className={`score-num ${c.text}`}>{score}</span>
-          <span className="score-label">/ 100</span>
-        </div>
-      </div>
-      <div className="score-meta">
-        <h2 className={c.text}>{c.label}</h2>
-        <p>{summary}</p>
+    <div className={`score-card ${cls} section`}>
+      <div className={`score-number ${cls}`}>{score}</div>
+      <div className="score-right">
+        <div className={`score-label ${cls}`}>{label}</div>
+        <div className="score-summary">{summary}</div>
       </div>
     </div>
   )
 }
 
-const DIM_LABELS = {
-  searchability: 'Searchability',
-  attributeCompleteness: 'Attribute Completeness',
-  visualDiscovery: 'Visual Discovery',
-  customerConfidence: 'Customer Confidence',
-  conversionClarity: 'Conversion Clarity',
-  alternativePath: 'Alternative Path',
-  aiCommerceReadiness: 'AI Commerce Readiness',
-}
+export function DimensionList({ dimensions }) {
+  const barColor = { red: '#ef4444', amber: '#f59e0b', blue: '#6b84f9', green: '#10b981' }
 
-export function DimensionGrid({ dimensions }) {
   return (
-    <div className="dim-grid">
+    <div className="dim-list-card section">
+      <div className="dim-list-header">Dimension breakdown</div>
       {Object.entries(dimensions).map(([key, dim]) => {
-        const c = scoreColor(dim.score)
+        const { cls } = scoreClass(dim.score)
         return (
-          <div key={key} className="dim-card">
-            <div className="dim-header">
-              <span className="dim-name">{DIM_LABELS[key] || key}</span>
-              <span className={`dim-score ${c.text}`}>{dim.score}</span>
+          <div key={key} className="dim-row">
+            <div>
+              <div className="dim-name-col">{DIM_NAMES[key] || key}</div>
+              <div className="dim-issue-col">{dim.issue}</div>
             </div>
-            <div className="dim-bar-bg">
-              <div className={`dim-bar ${c.bar}`} style={{ width: `${dim.score}%` }} />
-            </div>
-            <div className="dim-issue">{dim.issue}</div>
-            {(dim.fixes || dim.missing) && (
-              <div className="dim-fixes">
-                {(dim.fixes || dim.missing || []).slice(0, 3).map((f, i) => (
-                  <div key={i} className="dim-fix">{f}</div>
-                ))}
+            <div className="dim-bar-wrap">
+              <div className="dim-bar-bg">
+                <div className="dim-bar-fill" style={{ width: `${dim.score}%`, background: barColor[cls] }} />
               </div>
-            )}
+            </div>
+            <div className={`dim-score-col`} style={{ color: barColor[cls] }}>{dim.score}</div>
           </div>
         )
       })}

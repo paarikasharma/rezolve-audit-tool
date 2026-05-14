@@ -1,41 +1,35 @@
 export default function ListingImprover({ data, originalText }) {
-  const originalTitle = originalText.match(/title[:\s]+([^\n]+)/i)?.[1]?.trim() || 'Original listing title'
+  const originalTitle = originalText.match(/title[:\s]+([^\n]+)/i)?.[1]?.trim() || 'Original title'
 
   return (
-    <div className="section card">
-      <div className="card-title">Improved Listing</div>
-
-      <div className="before-after">
-        <div className="ba-block">
-          <div className="ba-label before">Before</div>
-          <div className="ba-text">{originalTitle}</div>
-        </div>
-        <div className="ba-block">
-          <div className="ba-label after">After</div>
-          <div className="ba-text">{data.improvedTitle}</div>
-        </div>
+    <div className="s-card section">
+      <div className="s-card-header">
+        <span className="s-card-title">Improved Listing</span>
       </div>
+      <div className="s-card-body">
 
-      <div style={{ marginBottom: 20 }}>
-        <div className="section-label">Missing Attributes</div>
-        <div className="tag-list">
-          {data.missingAttributes.map((a, i) => (
-            <span key={i} className="tag missing">{a}</span>
-          ))}
+        <div className="ba-grid">
+          <div className="ba-block before">
+            <div className="ba-tag before">Before</div>
+            <div className="ba-text">{originalTitle}</div>
+          </div>
+          <div className="ba-block after">
+            <div className="ba-tag after">After</div>
+            <div className="ba-text">{data.improvedTitle}</div>
+          </div>
         </div>
-      </div>
 
-      <div style={{ marginBottom: 20 }}>
-        <div className="section-label">Customer Search Terms</div>
-        <div className="tag-list">
-          {data.searchTerms.map((t, i) => (
-            <span key={i} className="tag accent">{t}</span>
-          ))}
+        <div className="sub-label">Missing Attributes</div>
+        <div className="chip-row">
+          {data.missingAttributes.map((a, i) => <span key={i} className="chip missing">{a}</span>)}
         </div>
-      </div>
 
-      <div>
-        <div className="section-label">Improved Bullet Points</div>
+        <div className="sub-label">Search Terms to Add</div>
+        <div className="chip-row">
+          {data.searchTerms.map((t, i) => <span key={i} className="chip search">{t}</span>)}
+        </div>
+
+        <div className="sub-label">Rewritten Bullets</div>
         <div className="bullet-list">
           {data.improvedBullets.map((b, i) => (
             <div key={i} className="bullet-item">
@@ -44,6 +38,7 @@ export default function ListingImprover({ data, originalText }) {
             </div>
           ))}
         </div>
+
       </div>
     </div>
   )
