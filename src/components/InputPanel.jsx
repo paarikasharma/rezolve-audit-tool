@@ -109,11 +109,9 @@ export default function InputPanel({ onAnalyze, loading }) {
       </div>
 
       <div className="panel-footer">
-        <div className="btn-orbit-wrap">
-          <button className="btn-primary" disabled={!canAnalyze() || loading} onClick={submit}>
-            {loading ? '⏳ Analyzing…' : '→ Run audit'}
-          </button>
-        </div>
+        <button className="btn-primary" disabled={!canAnalyze() || loading} onClick={submit}>
+          {loading ? '⏳ Analyzing…' : '→ Run audit'}
+        </button>
         {tab === 'paste' && text.length > 0 && (
           <span className="char-count">{text.length} chars</span>
         )}
