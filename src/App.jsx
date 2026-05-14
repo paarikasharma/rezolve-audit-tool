@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './index.css'
 import Header from './components/Header'
 import Typewriter from './components/Typewriter'
+import FloatingBadges from './components/FloatingBadges'
 import InputPanel from './components/InputPanel'
 import { ScoreHero, DimensionList } from './components/ScoreGauge'
 import ListingImprover from './components/ListingImprover'
@@ -54,14 +55,17 @@ export default function App() {
       <main className="container">
         {mode !== 'results' && (
           <div className="hero">
-            <h1>Why can't customers find<br />your <span><Typewriter /></span>?</h1>
-            <p>Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
+            <FloatingBadges />
+            <h1 className="hero-h1">Why can't customers find<br />your <span><Typewriter /></span>?</h1>
+            <p className="hero-p">Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
           </div>
         )}
 
         {(mode === 'idle' || mode === 'loading' || mode === 'error') && (
           <>
-            <InputPanel onAnalyze={handleAnalyze} loading={mode === 'loading'} />
+            <div className="input-appear">
+              <InputPanel onAnalyze={handleAnalyze} loading={mode === 'loading'} />
+            </div>
 
             {mode === 'loading' && (
               <div className="loading-state">
