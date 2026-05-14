@@ -3,6 +3,7 @@ import './index.css'
 import Header from './components/Header'
 import Typewriter from './components/Typewriter'
 import FloatingBadges from './components/FloatingBadges'
+import CursorGlow from './components/CursorGlow'
 import InputPanel from './components/InputPanel'
 import { ScoreHero, DimensionList } from './components/ScoreGauge'
 import ListingImprover from './components/ListingImprover'
@@ -50,6 +51,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <CursorGlow />
       <Header />
 
       <main className="container">
