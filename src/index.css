@@ -277,7 +277,7 @@ input[type="file"] { display: none; }
   cursor: pointer; transition: all 0.2s;
   display: flex; align-items: center; gap: 10px;
   letter-spacing: 0.3px;
-  width: 100%; max-width: 340px;
+  width: 100%;
   justify-content: center;
   box-shadow: 0 0 0 1px rgba(91,114,247,0.4), 0 4px 20px rgba(91,114,247,0.25);
 }
@@ -610,6 +610,57 @@ input[type="file"] { display: none; }
 
 @keyframes rotateBorder {
   to { --border-angle: 360deg; }
+}
+
+/* ── Orbiting button glow ── */
+@property --orbit-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.btn-orbit-wrap {
+  position: relative;
+  border-radius: 14px;
+  width: 100%; max-width: 340px;
+}
+
+.btn-orbit-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: conic-gradient(
+    from var(--orbit-angle),
+    transparent 0%,
+    transparent 60%,
+    rgba(168, 85, 247, 0.6) 72%,
+    rgba(255, 255, 255, 0.95) 78%,
+    rgba(91, 114, 247, 0.6) 85%,
+    transparent 95%
+  );
+  animation: orbitSpin 1.8s linear infinite;
+  animation-play-state: paused;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.btn-orbit-wrap:hover::before {
+  animation-play-state: running;
+  opacity: 1;
+}
+
+@keyframes orbitSpin {
+  to { --orbit-angle: 360deg; }
+}
+
+.btn-orbit-wrap .btn-primary {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 340px;
 }
 
 /* ── Bar animate in ── */
