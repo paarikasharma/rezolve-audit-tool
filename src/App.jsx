@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './index.css'
 import Header from './components/Header'
 import InputPanel from './components/InputPanel'
@@ -8,11 +8,26 @@ import RezolveMap from './components/RezolveMap'
 import GTMBrief from './components/GTMBrief'
 import { auditListing, auditCsv } from './lib/audit'
 
+const LOADING_STEPS = [
+  'Parsing listing…',
+  'Scoring discovery friction…',
+  'Mapping capability gaps…',
+  'Building recommendations…',
+]
+
 export default function App() {
   const [mode, setMode] = useState('idle')
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
   const [originalText, setOriginalText] = useState('')
+  const [loadStep, setLoadStep] = useState(0)
+
+  useEffect(() => {
+    if (mode !== 'loading') return
+    setLoadStep(0)
+    const id = setInterval(() => setLoadStep(s => Math.min(s + 1, LOADING_STEPS.length - 1)), 2200)
+    return () => clearInterval(id)
+  }, [mode])
 
   const handleAnalyze = async (text, type) => {
     setMode('loading')
@@ -38,7 +53,7 @@ export default function App() {
       <main className="container">
         {mode !== 'results' && (
           <div className="hero">
-<h1>Why can't customers find<br /><span>your product?</span></h1>
+            <h1>Why can't customers find<br /><span>your product?</span></h1>
             <p>Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
           </div>
         )}
@@ -49,9 +64,18 @@ export default function App() {
 
             {mode === 'loading' && (
               <div className="loading-state">
-                <div className="loader-ring" />
-                <div className="loading-text">Auditing your listing…</div>
-                <div className="loading-sub">Scoring searchability, attributes, confidence signals & discovery fit</div>
+                <div className="loading-orb">
+                  <div className="loading-ring" />
+                  <div className="loading-ring r2" />
+                </div>
+                <div className="loading-steps">
+                  {LOADING_STEPS.map((step, i) => (
+                    <div key={i} className={`loading-step ${i === loadStep ? 'active' : i < loadStep ? 'done' : ''}`}>
+                      <span className="step-dot" />
+                      {step}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 

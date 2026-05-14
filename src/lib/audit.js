@@ -1,87 +1,43 @@
-const SYSTEM_PROMPT = `You are an expert ecommerce product discovery analyst specializing in AI commerce optimization and Rezolve's product suite.
+const SYSTEM_PROMPT = `You are an expert ecommerce product discovery analyst. Analyze product listings for discovery friction and map issues to these capabilities:
+Brain Commerce, Visual Search, Product Enrichment, Brain Checkout, Geolocation, brainpowa.
+Be direct and specific. Return only valid JSON.`
 
-Rezolve capabilities for reference:
-- Brain Commerce: AI-powered search, merchandising, personalization, recommendations
-- Visual Search: search by image/screenshot, inspiration-led discovery, shop-the-look
-- Product Enrichment: automated attribute enrichment, catalog structuring, data quality
-- Brain Checkout: friction-free checkout, one-click purchase, conversion optimization
-- Geolocation: local inventory, store pickup, proximity-based availability
-- brainpowa: conversational AI commerce, guided shopping, Q&A for products
-
-Analyze product listings and map discovery friction to Rezolve-relevant opportunities.`
-
-const USER_PROMPT = (listing) => `Analyze this product listing for ecommerce discovery friction:
+const USER_PROMPT = (listing) => `Audit this product listing for ecommerce discovery friction:
 
 ---
 ${listing}
 ---
 
-Return ONLY valid JSON (no markdown, no code blocks, no explanation) with this exact structure:
+Return ONLY valid JSON with this exact structure (no markdown, no explanation):
 {
-  "overallScore": <integer 0-100, where 100 is perfect discovery readiness>,
-  "summary": "<2-3 sentence plain-English summary of the main discovery problems>",
+  "overallScore": <0-100>,
+  "summary": "<2 sentences max on main discovery problems>",
   "dimensions": {
-    "searchability": {
-      "score": <0-100>,
-      "issue": "<one clear sentence describing the problem>",
-      "fixes": ["<fix 1>", "<fix 2>", "<fix 3>"]
-    },
-    "attributeCompleteness": {
-      "score": <0-100>,
-      "issue": "<one clear sentence>",
-      "missing": ["<attr 1>", "<attr 2>", "<attr 3>", "<attr 4>", "<attr 5>"]
-    },
-    "visualDiscovery": {
-      "score": <0-100>,
-      "issue": "<one clear sentence>"
-    },
-    "customerConfidence": {
-      "score": <0-100>,
-      "issue": "<one clear sentence>"
-    },
-    "conversionClarity": {
-      "score": <0-100>,
-      "issue": "<one clear sentence>"
-    },
-    "alternativePath": {
-      "score": <0-100>,
-      "issue": "<one clear sentence>"
-    },
-    "aiCommerceReadiness": {
-      "score": <0-100>,
-      "issue": "<one clear sentence>"
-    }
+    "searchability":         { "score": <0-100>, "issue": "<one sentence>" },
+    "attributeCompleteness": { "score": <0-100>, "issue": "<one sentence>", "missing": ["<attr>","<attr>","<attr>","<attr>"] },
+    "visualDiscovery":       { "score": <0-100>, "issue": "<one sentence>" },
+    "customerConfidence":    { "score": <0-100>, "issue": "<one sentence>" },
+    "conversionClarity":     { "score": <0-100>, "issue": "<one sentence>" },
+    "alternativePath":       { "score": <0-100>, "issue": "<one sentence>" },
+    "aiCommerceReadiness":   { "score": <0-100>, "issue": "<one sentence>" }
   },
-  "improvedTitle": "<a much better, attribute-rich product title (max 120 chars)>",
-  "missingAttributes": ["<attr 1>", "<attr 2>", "<attr 3>", "<attr 4>", "<attr 5>", "<attr 6>"],
-  "searchTerms": ["<term 1>", "<term 2>", "<term 3>", "<term 4>", "<term 5>", "<term 6>", "<term 7>", "<term 8>"],
-  "improvedBullets": [
-    "<benefit-led bullet 1>",
-    "<benefit-led bullet 2>",
-    "<benefit-led bullet 3>",
-    "<benefit-led bullet 4>",
-    "<benefit-led bullet 5>"
-  ],
-  "intentMap": [
-    { "intent": "<customer intent type>", "searchBehavior": "<how they actually search>", "gap": "<what the listing is missing>" },
-    { "intent": "<customer intent type>", "searchBehavior": "<how they actually search>", "gap": "<what the listing is missing>" },
-    { "intent": "<customer intent type>", "searchBehavior": "<how they actually search>", "gap": "<what the listing is missing>" },
-    { "intent": "<customer intent type>", "searchBehavior": "<how they actually search>", "gap": "<what the listing is missing>" }
-  ],
+  "improvedTitle": "<attribute-rich title, max 100 chars>",
+  "missingAttributes": ["<attr>","<attr>","<attr>","<attr>","<attr>"],
+  "searchTerms": ["<term>","<term>","<term>","<term>","<term>","<term>"],
+  "improvedBullets": ["<bullet>","<bullet>","<bullet>","<bullet>"],
   "rezolveMap": [
-    { "friction": "<specific friction detected>", "capability": "<Rezolve capability name>", "why": "<1 sentence on why this capability solves it>", "badge": "<exact one of: Brain Commerce|Visual Search|Product Enrichment|Brain Checkout|Geolocation|brainpowa>" },
-    { "friction": "<specific friction detected>", "capability": "<Rezolve capability name>", "why": "<1 sentence>", "badge": "<badge>" },
-    { "friction": "<specific friction detected>", "capability": "<Rezolve capability name>", "why": "<1 sentence>", "badge": "<badge>" },
-    { "friction": "<specific friction detected>", "capability": "<Rezolve capability name>", "why": "<1 sentence>", "badge": "<badge>" }
+    { "friction": "<specific friction>", "why": "<one sentence>", "badge": "<Brain Commerce|Visual Search|Product Enrichment|Brain Checkout|Geolocation|brainpowa>" },
+    { "friction": "<specific friction>", "why": "<one sentence>", "badge": "<badge>" },
+    { "friction": "<specific friction>", "why": "<one sentence>", "badge": "<badge>" }
   ],
   "gtm": {
-    "customerProblem": "<1-2 sentences on the end-customer pain>",
-    "commerceFriction": "<1-2 sentences on the specific listing/discovery problem>",
-    "rezolveAngle": "<1-2 sentences on how Rezolve addresses it>",
-    "talkTrack": "<a compelling 1-2 sentence partner pitch — the kind of line a sales rep would actually use>",
-    "metrics": ["<metric 1>", "<metric 2>", "<metric 3>", "<metric 4>"]
+    "customerProblem": "<1 sentence>",
+    "commerceFriction": "<1 sentence>",
+    "rezolveAngle": "<1 sentence>",
+    "talkTrack": "<1 compelling sentence a sales rep would actually say>",
+    "metrics": ["<metric>","<metric>","<metric>"]
   },
-  "enablementAsset": "<1 sentence describing the most useful partner asset to create from this audit>"
+  "enablementAsset": "<1 sentence on what partner asset to create>"
 }`
 
 export async function auditListing(listingText) {
@@ -89,8 +45,8 @@ export async function auditListing(listingText) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 4000,
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1800,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: USER_PROMPT(listingText) }]
     })
@@ -109,7 +65,7 @@ export async function auditListing(listingText) {
   } catch {
     const match = text.match(/\{[\s\S]*\}/)
     if (match) return JSON.parse(match[0])
-    throw new Error('Could not parse audit response as JSON')
+    throw new Error('Could not parse response. Try again.')
   }
 }
 
@@ -120,45 +76,26 @@ export async function auditCsv(csvText) {
     const vals = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''))
     return headers.reduce((obj, h, i) => ({ ...obj, [h]: vals[i] || '' }), {})
   })
-
   const formatted = rows.map((row, i) =>
     `Product ${i + 1}:\n${Object.entries(row).map(([k, v]) => `${k}: ${v}`).join('\n')}`
   ).join('\n\n---\n\n')
-
-  return auditListing(`[CATALOG AUDIT - ${rows.length} products]\n\n${formatted}`)
+  return auditListing(`[CATALOG - ${rows.length} products]\n\n${formatted}`)
 }
 
 export const SAMPLE_LISTINGS = {
   fashion: {
     label: 'Fashion — Generic listing',
     icon: '👗',
-    text: `Product Title: Blue Top
-Category: Women's Fashion
-Price: ₹999
-Description: Stylish blue top for women. Comfortable and trendy. Perfect for casual wear.
-Tags: top, blue, women, fashion
-Inventory: In stock`
+    text: `Title: Blue Top\nCategory: Women's Fashion\nPrice: ₹999\nDescription: Stylish blue top for women. Comfortable and trendy. Perfect for casual wear.\nTags: top, blue, women, fashion\nInventory: In stock`
   },
   health: {
     label: 'Health — Under-described supplement',
     icon: '💊',
-    text: `Product Title: Vegan Omega Supplement
-Category: Health & Wellness
-Price: $34.99
-Description: Vegan omega-3 heart supplement made with sea buckthorn and algae. Good for health.
-Tags: vegan, supplement, omega
-Inventory: In stock
-Reviews: 4.1/5`
+    text: `Title: Vegan Omega Supplement\nCategory: Health & Wellness\nPrice: $34.99\nDescription: Vegan omega-3 heart supplement made with sea buckthorn and algae. Good for health.\nTags: vegan, supplement, omega\nInventory: In stock\nReviews: 4.1/5`
   },
   b2b: {
     label: 'B2B — Missing technical specs',
     icon: '⚙️',
-    text: `Product Title: Industrial Filter Unit
-Category: B2B / Industrial Equipment
-Price: $249
-Description: High quality filter unit for industrial use. Durable and reliable. Easy to install.
-Tags: filter, industrial, equipment
-SKU: FLT-001
-Inventory: 47 units`
+    text: `Title: Industrial Filter Unit\nCategory: B2B / Industrial Equipment\nPrice: $249\nDescription: High quality filter unit for industrial use. Durable and reliable. Easy to install.\nTags: filter, industrial, equipment\nSKU: FLT-001\nInventory: 47 units`
   }
 }

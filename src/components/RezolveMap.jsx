@@ -13,8 +13,8 @@ export default function RezolveMap({ rezolveMap }) {
   return (
     <div className="s-card section">
       <div className="s-card-header">
-        <span className="s-card-title">Rezolve Opportunity Map</span>
-        <span className="s-card-sub">Friction → Capability</span>
+        <span className="s-card-title">Opportunity Map</span>
+        <span className="s-card-sub">Friction → Fix</span>
       </div>
       <div className="rezolve-rows">
         {rezolveMap.map((row, i) => (
