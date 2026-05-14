@@ -521,6 +521,78 @@ input[type="file"] { display: none; }
   display: flex; gap: 8px; align-items: flex-start;
 }
 
+/* ── Stat strip ── */
+.stat-strip {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-top: 24px;
+  font-size: 13px; color: var(--text-2);
+  animation: heroIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
+}
+.stat-item strong { color: var(--text); font-weight: 700; }
+.stat-div { color: var(--text-muted); }
+
+/* ── Marquee ── */
+.marquee-wrap {
+  overflow: hidden;
+  margin: 24px 0 20px;
+  mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+}
+.marquee-track {
+  display: flex; align-items: center;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item { display: flex; align-items: center; gap: 8px; padding: 0 4px; }
+.marquee-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; opacity: 0.7; }
+.marquee-label { font-size: 12px; font-weight: 600; letter-spacing: 0.3px; opacity: 0.5; white-space: nowrap; }
+.marquee-sep { color: var(--text-muted); font-size: 12px; margin-left: 8px; opacity: 0.3; }
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
+/* ── Gradient border on input panel ── */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.input-panel-wrap {
+  border-radius: 17px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--border-angle),
+    #5b72f7 0%,
+    #a855f7 25%,
+    #f472b6 50%,
+    #a855f7 75%,
+    #5b72f7 100%
+  );
+  animation: rotateBorder 5s linear infinite;
+}
+.input-panel-wrap .input-panel {
+  border: none;
+  border-radius: 15px;
+}
+
+@keyframes rotateBorder {
+  to { --border-angle: 360deg; }
+}
+
+/* ── Bar animate in ── */
+.bar-animate {
+  width: 0;
+  animation: barIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes barIn {
+  from { width: 0; }
+  to   { width: var(--bar-w); }
+}
+
 /* ── Floating badges ── */
 .floating-badges {
   position: absolute;

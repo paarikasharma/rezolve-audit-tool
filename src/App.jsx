@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Typewriter from './components/Typewriter'
 import FloatingBadges from './components/FloatingBadges'
 import CursorGlow from './components/CursorGlow'
+import Marquee from './components/Marquee'
 import InputPanel from './components/InputPanel'
 import { ScoreHero, DimensionList } from './components/ScoreGauge'
 import ListingImprover from './components/ListingImprover'
@@ -60,12 +61,21 @@ export default function App() {
             <FloatingBadges />
             <h1 className="hero-h1">Why can't customers find<br />your <span><Typewriter /></span>?</h1>
             <p className="hero-p">Paste any listing. Get a discovery score, missing attributes, better search terms, and the exact capabilities that fix each gap.</p>
+
+            <div className="stat-strip hero-p">
+              <span className="stat-item"><strong>3</strong> input modes</span>
+              <span className="stat-div">·</span>
+              <span className="stat-item"><strong>7</strong> dimensions scored</span>
+              <span className="stat-div">·</span>
+              <span className="stat-item"><strong>6</strong> capabilities mapped</span>
+            </div>
           </div>
         )}
 
         {(mode === 'idle' || mode === 'loading' || mode === 'error') && (
           <>
-            <div className="input-appear">
+            <Marquee />
+            <div className="input-appear input-panel-wrap">
               <InputPanel onAnalyze={handleAnalyze} loading={mode === 'loading'} />
             </div>
 
