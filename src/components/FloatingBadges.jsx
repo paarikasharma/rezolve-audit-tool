@@ -1,10 +1,10 @@
 const BADGES = [
-  { score: 62, label: 'Fashion',     top: '12%',  left: '4%',   size: 1,    delay: '0s',    duration: '22s' },
-  { score: 43, label: 'Health',      top: '55%',  left: '2%',   size: 0.8,  delay: '5s',    duration: '28s' },
-  { score: 78, label: 'B2B',         top: '20%',  right: '5%',  size: 0.9,  delay: '2s',    duration: '25s' },
-  { score: 31, label: 'Supplements', top: '70%',  right: '3%',  size: 0.75, delay: '8s',    duration: '32s' },
-  { score: 85, label: 'Electronics', top: '40%',  left: '7%',   size: 0.7,  delay: '12s',   duration: '20s' },
-  { score: 54, label: 'Beauty',      top: '80%',  left: '40%',  size: 0.85, delay: '4s',    duration: '26s' },
+  { score: 62, label: 'Womenswear',  top: '12%',  left: '4%',   size: 1,    delay: '0s',    duration: '22s' },
+  { score: 43, label: 'Wellness',   top: '55%',  left: '2%',   size: 0.8,  delay: '5s',    duration: '28s' },
+  { score: 78, label: 'Footwear',   top: '20%',  right: '5%',  size: 0.9,  delay: '2s',    duration: '25s' },
+  { score: 31, label: 'Homeware',   top: '70%',  right: '3%',  size: 0.75, delay: '8s',    duration: '32s' },
+  { score: 85, label: 'Electricals',top: '40%',  left: '7%',   size: 0.7,  delay: '12s',   duration: '20s' },
+  { score: 54, label: 'Beauty',     top: '80%',  left: '40%',  size: 0.85, delay: '4s',    duration: '26s' },
 ]
 
 function scoreColor(s) {

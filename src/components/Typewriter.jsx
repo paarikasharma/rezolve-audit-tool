@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 
 const WORDS = [
-  'blue top',
+  'navy wrap dress',
   'vegan supplement',
   'luxury handbag',
-  'running shoes',
+  'running trainers',
   'skincare serum',
-  'industrial filter',
+  'cashmere jumper',
   'wireless earbuds',
-  'cotton kurta',
+  'trench coat',
 ]
 
 export default function Typewriter() {

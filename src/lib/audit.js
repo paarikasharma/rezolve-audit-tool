@@ -86,16 +86,16 @@ export const SAMPLE_LISTINGS = {
   fashion: {
     label: 'Fashion — Generic listing',
     icon: '👗',
-    text: `Title: Blue Top\nCategory: Women's Fashion\nPrice: ₹999\nDescription: Stylish blue top for women. Comfortable and trendy. Perfect for casual wear.\nTags: top, blue, women, fashion\nInventory: In stock`
+    text: `Title: Navy Wrap Dress\nCategory: Women's Fashion\nPrice: £45.00\nDescription: Stylish navy dress for women. Comfortable and elegant. Perfect for casual wear.\nTags: dress, navy, women, fashion\nInventory: In stock`
   },
   health: {
     label: 'Health — Under-described supplement',
     icon: '💊',
-    text: `Title: Vegan Omega Supplement\nCategory: Health & Wellness\nPrice: $34.99\nDescription: Vegan omega-3 heart supplement made with sea buckthorn and algae. Good for health.\nTags: vegan, supplement, omega\nInventory: In stock\nReviews: 4.1/5`
+    text: `Title: Vegan Omega Supplement\nCategory: Health & Wellness\nPrice: £28.99\nDescription: Vegan omega-3 heart supplement made with sea buckthorn and algae. Good for health.\nTags: vegan, supplement, omega\nInventory: In stock\nReviews: 4.1/5`
   },
   b2b: {
     label: 'B2B — Missing technical specs',
     icon: '⚙️',
-    text: `Title: Industrial Filter Unit\nCategory: B2B / Industrial Equipment\nPrice: $249\nDescription: High quality filter unit for industrial use. Durable and reliable. Easy to install.\nTags: filter, industrial, equipment\nSKU: FLT-001\nInventory: 47 units`
+    text: `Title: Industrial Filter Unit\nCategory: B2B / Industrial Equipment\nPrice: £199\nDescription: High quality filter unit for industrial use. Durable and reliable. Easy to install.\nTags: filter, industrial, equipment\nSKU: FLT-001\nInventory: 47 units`
   }
 }
